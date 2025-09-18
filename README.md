@@ -1,8 +1,8 @@
 # Bài tập môn Xử lý ngôn ngữ tự nhiên và ứng dụng (MAT3561E)
 
-Họ và tên: Trịnh Hải Đăng
+***Họ và tên: Trịnh Hải Đăng***
 
-Mã sinh viên: 22001561
+***Mã sinh viên: 22001561***
 
 Source code được tổ chức đúng như file hướng dẫn thực hành. Các file để thực nghiệm được đặt trong thư mục test. Các
 file báo cáo (định dạng markdown để có thể xem trực tiếp trong GitHub) được đặt trong thư mục Report

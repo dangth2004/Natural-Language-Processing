@@ -17,16 +17,20 @@ def main():
         print(f"Using SimpleTokenizer: {simple_token}")
         print(f"Using RegexTokenizer: {regex_token}\n")
 
-    dataset_path = "/home/dangth2004/Programming/Natural-Language-Processing/data/UD_English-EWT/en_ewt-ud-train.txt"
-    raw_text = load_raw_text_data(dataset_path)
-    # Take a small portion of the text for demonstration
-    sample_text = raw_text[:500]  # First 500 characters
     print("\n--- Tokenizing Sample Text from UD_English-EWT ---")
-    print(f"Original Sample: {sample_text[:100]}...")
-    simple_tokens = simple_tokenizer.tokenize(sample_text)
-    print(f"SimpleTokenizer Output (first 20 tokens): {simple_tokens[:20]}")
-    regex_tokens = regex_tokenizer.tokenize(sample_text)
-    print(f"RegexTokenizer Output (first 20 tokens): {regex_tokens[:20]}")
+    dataset_path = ["/home/dangth2004/Programming/Natural-Language-Processing/data/UD_English-EWT/en_ewt-ud-train.txt",
+                    "/home/dangth2004/Programming/Natural-Language-Processing/data/UD_English-EWT/en_ewt-ud-test.txt",
+                    "/home/dangth2004/Programming/Natural-Language-Processing/data/UD_English-EWT/en_ewt-ud-dev.txt"]
+    for path in dataset_path:
+        print(f"Reading file: {path}")
+        raw_text = load_raw_text_data(path)
+        # Take a small portion of the text for demonstration
+        sample_text = raw_text[:500]  # First 500 characters
+        print(f"Original Sample: {sample_text[:100]}...")
+        simple_tokens = simple_tokenizer.tokenize(sample_text)
+        print(f"SimpleTokenizer Output (first 20 tokens): {simple_tokens[:20]}")
+        regex_tokens = regex_tokenizer.tokenize(sample_text)
+        print(f"RegexTokenizer Output (first 20 tokens): {regex_tokens[:20]}\n")
 
 
 if __name__ == "__main__":

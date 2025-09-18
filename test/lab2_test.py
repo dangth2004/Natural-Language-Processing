@@ -12,7 +12,6 @@ def main():
         "NLP is a subfield of AI."
     ]
 
-
     result = count_vectorizer.fit_transform(corpus)
     print(count_vectorizer.vocabulary_)
     for vector in result:
