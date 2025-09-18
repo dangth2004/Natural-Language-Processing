@@ -1,4 +1,3 @@
-import re
 from src.core.interfaces import Tokenizer
 
 
