@@ -7,4 +7,3 @@
 - Đã hoàn thành Task 3: Tokenization with UD_English-EWT Dataset
 
 ## Kết quả chạy code
-![img.png](img.png)
