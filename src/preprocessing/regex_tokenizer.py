@@ -7,5 +7,4 @@ class RegexTokenizer(Tokenizer):
         result = text.lower()
         regex = r"\w+|[^\w\s]"
         result = re.findall(regex, result)
-
         return result
