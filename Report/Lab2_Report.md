@@ -7,6 +7,7 @@
 
 ## Kết quả chạy code
 
+<img width="1828" height="203" alt="image" src="https://github.com/user-attachments/assets/9c030c05-6270-4ca1-a850-1553f9e1d86c" />
 
 
 ## Phân tích kết quả
