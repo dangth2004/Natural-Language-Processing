@@ -13,9 +13,9 @@ def main():
     ]
 
     result = count_vectorizer.fit_transform(corpus)
-    print(count_vectorizer.vocabulary_)
-    for vector in result:
-        print(vector)
+    print(f"Vocabulary:\n{count_vectorizer.vocabulary_}")
+    for i, vector in enumerate(result):
+        print(f"Document {i + 1}: {vector}")
 
 
 if __name__ == "__main__":
