@@ -1,5 +1,3 @@
-from enum import unique
-
 from src.core.interfaces import Vectorizer, Tokenizer
 
 
