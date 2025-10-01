@@ -31,15 +31,13 @@ object Lab17_NLPPipeline_normal_tokenizer {
     // --- Pipeline Stages Definition ---
 
     // 2. --- Tokenization ---
-    val tokenizer = new RegexTokenizer()
-      .setInputCol("text")
-      .setOutputCol("tokens")
-      .setPattern("\\s+|[.,;!?()\"']") // Fix: Use \\s for regex, and \" for double quote
+    // val tokenizer = new RegexTokenizer()
+    //  .setInputCol("text")
+    //  .setOutputCol("tokens")
+    //  .setPattern("\\s+|[.,;!?()\"']") // Fix: Use \\s for regex, and \" for double quote
 
-    /*
     // Alternative Tokenizer: A simpler, whitespace-based tokenizer.
     val tokenizer = new Tokenizer().setInputCol("text").setOutputCol("tokens")
-    */
 
     // 3. --- Stop Words Removal ---
     val stopWordsRemover = new StopWordsRemover()

@@ -1,9 +1,9 @@
 --- Performance Metrics ---
-Pipeline fitting duration: 1.82 seconds
-Data transformation duration: 0.70 seconds
-Actual vocabulary size (after preprocessing): 31355 unique terms
+Pipeline fitting duration: 1.78 seconds
+Data transformation duration: 0.72 seconds
+Actual vocabulary size (after preprocessing): 46838 unique terms
 HashingTF numFeatures set to: 20000
-Note: numFeatures (20000) is smaller than actual vocabulary size (31355). Hash collisions are expected.
+Note: numFeatures (20000) is smaller than actual vocabulary size (46838). Hash collisions are expected.
 Metrics file generated at: /home/dangth2004/Programming/Natural-Language-Processing/spark_labs/../log/lab17_metrics_normal_tokenizer.log
 
 For detailed stage-level metrics, view the Spark UI at http://localhost:4040 during execution.
