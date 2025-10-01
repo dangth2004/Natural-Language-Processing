@@ -1,0 +1,6 @@
+--- Performance Metrics (Word2Vec) ---
+Pipeline fitting duration: 4.86 seconds
+Data transformation duration: 0.68 seconds
+Actual vocabulary size (after preprocessing): 31355 unique terms.
+Word2Vec Vector Size set to: 100
+Metrics file generated at: /home/dangth2004/Programming/Natural-Language-Processing/spark_labs/../log/lab17_metrics_word2vec.log

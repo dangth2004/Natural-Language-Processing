@@ -1,0 +1,8 @@
+--- Performance Metrics and ML Results ---
+Pipeline fitting duration: 4.60 seconds
+Data transformation + prediction duration: 0.61 seconds
+Actual vocabulary size (after preprocessing): 31355 unique terms
+HashingTF numFeatures set to: 20000
+Classification Accuracy (Training Data): 1.0000
+Note: numFeatures (20000) is smaller than actual vocabulary size (31355). Hash collisions are expected.
+Metrics file generated at: /home/dangth2004/Programming/Natural-Language-Processing/spark_labs/../log/lab17_metrics_ml.log
