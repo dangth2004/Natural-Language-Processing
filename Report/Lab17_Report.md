@@ -26,6 +26,14 @@ Các file biến thể theo yêu cầu đề bài:
   dựa trên độ dài văn bản).
 - File `Lab17_NLPPipeline_Word2Vec.scala`: Vectorize văn bản sử dụng `Word2Vec` thay vì sử dụng TF-IDF.
 
+File `Lab17_NLPPipeline_similarity.scala`:
+
+- Thêm `limitDocuments` cho phép người dùng nhập vào số văn bản được xử lý thay
+  vì cố định sẵn.
+- Thêm phần in ra thời gian chạy từng giai đoạn cụ thể vào file result. Thêm phần chuẩn hóa `Normalizer`
+  vector đặc trưng TF-IDF vào pipeline.
+- Thêm phần tìm văn bản tương đồng bằng độ đo cosine
+
 ## Hướng dẫn chạy code
 
 ```bash
@@ -34,6 +42,7 @@ sbt "runMain com.dangth2004.spark.Lab17_NLPPipeline_normal_tokenizer"
 sbt "runMain com.dangth2004.spark.Lab17_NLPPipeline_change_features"
 sbt "runMain com.dangth2004.spark.Lab17_NLPPipeline_ML"
 sbt "runMain com.dangth2004.spark.Lab17_NLPPipeline_Word2Sec"
+sbt "runMain com.dangth2004.spark.Lab17_NLPPipeline_similarity"
 ```
 
 ## Kết quả
@@ -59,6 +68,8 @@ Các file kết quả:
   dẫn đến thời gian là lâu nhất.
 - File `Lab17_NLPPipeline_ML.scala` sử dụng Logistic Regression để phân loại, tuy nhiên nhãn giả định (dựa vào độ dài
   văn bản) là quá đơn giản, dẫn đến hiệu suất cực tốt của mô hình học máy này.
+- File `Lab17_NLPPipeline_similarity.scala`: đã in ra được 5 văn bản tương đồng nhất với văn bản cho trước bằng việc
+  tính khoảng cách cosine giữa vector đặc trưng của 2 văn bản.
 
 ## Khó khăn gặp phải và cách giải quyết
 

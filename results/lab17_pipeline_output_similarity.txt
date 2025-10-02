@@ -1,0 +1,42 @@
+--- NLP Pipeline Output (First 20 results) ---
+Output file generated at: /home/dangth2004/Programming/Natural-Language-Processing/spark_labs/../results/lab17_pipeline_output_similarity.txt
+
+--- Performance Metrics ---
+Data reading duration: 1.97 seconds
+Pipeline fitting duration: 1.82 seconds
+Data transformation duration: 0.75 seconds
+Vocabulary size calculation duration: 0.45 seconds
+Cosine similarity calculation duration: 0.40 seconds
+Metrics file writing duration: 0.00 seconds
+
+--- Top 5 Similar Documents ---
+Reference Document: Beginners BBQ Class Taking Place in Missoula!
+Do you want to get better at making delicious BBQ? You...
+
+Most Similar Documents:
+--------------------------------------------------------------------------------
+Text: Check out the Italian Pasta Salad calories and how many carbs in Italian Pasta Salad. Learn all the ...
+Cosine Similarity: 0.0858
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Text: Enjoy our variety of meat cuts prepared with authentic Southern Brazilian Style using our open fire ...
+Cosine Similarity: 0.0789
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Text: Know Buckeye Trail Class of 2001 graduates that are NOT on this List? Help us Update the 2001 Class ...
+Cosine Similarity: 0.0784
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Text: Class A Burn Prop - Stove Simulator With Overhead Burn Hood - Fire Facilities, Inc.
+The stove simula...
+Cosine Similarity: 0.0739
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Text: Many students have never been to a museum before. While we want children to respect the museum and i...
+Cosine Similarity: 0.0722
+--------------------------------------------------------------------------------
+
