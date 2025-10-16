@@ -94,6 +94,15 @@ So sánh các phương pháp:
 
 ## Công cụ và tài liệu tham khảo
 
+- Khó khăn 1: Lần đầu chạy script sử dụng gensim.downloader, cần có kết nối Internet ổn định để tải mô hình pre-trained
+  về máy. Nếu mạng không ổn định, quá trình này có thể bị lỗi.
+    - Cách giải quyết: Đảm bảo kết nối mạng ổn định trong lần chạy đầu tiên. Sau khi tải về, mô hình sẽ được lưu vào
+      cache và các lần chạy sau sẽ không cần tải lại.
+- Khó khăn 2: Việc thiết lập môi trường để chạy PySpark có thể phức tạp, đòi hỏi phải cài đặt Java và cấu hình đúng các
+  biến môi trường. Ngoài ra, cần cấp đủ bộ nhớ cho Spark driver để xử lý dữ liệu.
+    - Cách giải quyết: Script đã cấu hình bộ nhớ cho driver (.config("spark.driver.memory", "4g")) để giảm thiểu lỗi hết
+      bộ nhớ. Cung cấp hướng dẫn rõ ràng về việc cài đặt pyspark và đảm bảo file dữ liệu đầu vào nằm đúng vị trí.
+
 ### Thư viện và Framework
 
 - Gensim: Một thư viện Python mã nguồn mở mạnh mẽ cho xử lý ngôn ngữ tự nhiên, đặc biệt trong việc lập mô hình chủ đề
