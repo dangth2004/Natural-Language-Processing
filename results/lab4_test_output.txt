@@ -1,0 +1,25 @@
+Loading model 'glove-wiki-gigaword-50'... This may take a moment.
+Model loaded successfully!
+Getting vector for the word 'king':
+Vector Shape: (50,)
+Vector Preview: [ 0.50451   0.68607  -0.59517  -0.022801  0.60046 ]
+
+Getting similarity scores between 'king' and 'queen' and 'man':
+Similarity('king', 'queen'): 0.7839
+Similarity('king', 'man'):   0.5309
+
+Getting the 10 most similar words to 'computer':
+ 1. computers       | Score: 0.9165
+ 2. software        | Score: 0.8815
+ 3. technology      | Score: 0.8526
+ 4. electronic      | Score: 0.8126
+ 5. internet        | Score: 0.8060
+ 6. computing       | Score: 0.8026
+ 7. devices         | Score: 0.8016
+ 8. digital         | Score: 0.7992
+ 9. applications    | Score: 0.7913
+10. pc              | Score: 0.7883
+
+Embedding the sentence: 'The queen rules the country.'
+Resulting Vector Shape: (50,)
+Resulting Vector Preview: [ 0.04564168  0.36530998 -0.55974334  0.04014383  0.09655549]

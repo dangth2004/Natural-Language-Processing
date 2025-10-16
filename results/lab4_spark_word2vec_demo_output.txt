@@ -1,0 +1,49 @@
+Initializing Spark session...
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/10/16 22:14:28 WARN Utils: Your hostname, dangth2004, resolves to a loopback address: 127.0.1.1; using 192.168.1.9 instead (on interface wlp2s0)
+25/10/16 22:14:28 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/10/16 22:14:29 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Loading dataset from '/home/dangth2004/Programming/Natural-Language-Processing/data/c4-train.00000-of-01024-30K.json'...
+Dataset loaded successfully.
+root
+ |-- text: string (nullable = true)
+ |-- timestamp: string (nullable = true)
+ |-- url: string (nullable = true)
+
+
+Preprocessing text data...
+Preprocessing complete.
+Sample of processed data:
++--------------------------------------------------+
+|                                             words|
++--------------------------------------------------+
+|[beginners, bbq, class, taking, place, in, miss...|
+|[discussion, in, mac, os, x, lion, , started, b...|
+|[foil, plaid, lycra, and, spandex, shortall, wi...|
+|[how, many, backlinks, per, day, for, new, site...|
+|[the, denver, board, of, education, opened, the...|
++--------------------------------------------------+
+only showing top 5 rows
+
+Configuring and training the Word2Vec model...
+Model training complete.
+Training time: 156.17816863200005 seconds.
+
+Finding 5 synonyms for the word 'computer'...
+Top 5 words similar to 'computer':
++----------+------------------+
+|      word|        similarity|
++----------+------------------+
+|  firewall|0.6296740174293518|
+|   desktop|0.6070299744606018|
+|    laptop|  0.60535728931427|
+|navigation|0.6012406349182129|
+| computers|0.5964436531066895|
++----------+------------------+
+
+
+Stopping the Spark session.

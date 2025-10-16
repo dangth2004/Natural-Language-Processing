@@ -1,0 +1,18 @@
+Reading training data...
+Loaded 235317 sentences.
+Training Word2Vec model...
+Training time: 3.495860811000057 seconds.
+Saving model to /home/dangth2004/Programming/Natural-Language-Processing/results/word2vec_ewt.model
+Model saved successfully!
+
+=== Example Queries ===
+
+Top 5 words similar to 'computer':
+  laptop          0.7518
+  soil            0.7486
+  software        0.7371
+  reopening       0.7204
+  radio           0.7164
+
+Analogy: king - man + woman ≈ ?
+  Result: tract (0.6350)
