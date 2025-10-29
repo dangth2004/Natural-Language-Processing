@@ -1,0 +1,31 @@
+=== TextClassifier Evaluation ===
+
+Original Data:
+  'This movie is fantastic and I love it!' -> 1
+  'I hate this film, it's terrible.' -> 0
+  'The acting was superb, a truly great experience.' -> 1
+  'What a waste of time, absolutely boring.' -> 0
+  'Highly recommend this, a masterpiece.' -> 1
+  'Could not finish watching, so bad.' -> 0
+
+Training Data:
+'What a waste of time, absolutely boring.' -> 0
+'Highly recommend this, a masterpiece.' -> 1
+'Could not finish watching, so bad.' -> 0
+'The acting was superb, a truly great experience.' -> 1
+
+Test Data:
+'I hate this film, it's terrible.' -> 0
+'This movie is fantastic and I love it!' -> 1
+
+Classifier trained.
+
+Predictions on Test Data:
+'I hate this film, it's terrible.' -> Predicted: 1, Actual: 0
+'This movie is fantastic and I love it!' -> Predicted: 1, Actual: 1
+
+Evaluation Metrics:
+{'accuracy': 0.5,
+ 'f1_score': 0.3333333333333333,
+ 'precision': 0.25,
+ 'recall': 0.5}

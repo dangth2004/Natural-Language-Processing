@@ -1,0 +1,31 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/10/29 18:33:32 WARN Utils: Your hostname, dangth2004, resolves to a loopback address: 127.0.1.1; using 192.168.1.7 instead (on interface wlp2s0)
+25/10/29 18:33:32 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/10/29 18:33:33 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Đang huấn luyện mô hình...
+Huấn luyện hoàn tất.
+Độ chính xác (Accuracy): 0.6000
+Precision: 0.7778
+Recall: 0.6000
+F1-Score: 0.5238
+Training time: 2.7586407870003313 seconds.
+
+Một vài kết quả dự đoán:
++--------------------------------------------------------+---------+-----+----------+
+|text                                                    |sentiment|label|prediction|
++--------------------------------------------------------+---------+-----+----------+
+|A truly amazing game experience.                        |1        |1.0  |1.0       |
+|Everything went smoothly and efficiently.               |1        |1.0  |1.0       |
+|The delay was unacceptable, very disappointed.          |-1       |0.0  |1.0       |
+|The instructions were confusing and difficult to follow.|-1       |0.0  |1.0       |
+|The item was received damaged and broken.               |-1       |0.0  |0.0       |
+|The meeting was productive and short.                   |1        |1.0  |1.0       |
+|The music was inspiring and uplifting.                  |1        |1.0  |1.0       |
+|The sound quality is simply superb.                     |1        |1.0  |1.0       |
+|This jacket fits poorly and is uncomfortable.           |-1       |0.0  |1.0       |
+|Too many bugs in the latest software release.           |-1       |0.0  |1.0       |
++--------------------------------------------------------+---------+-----+----------+
