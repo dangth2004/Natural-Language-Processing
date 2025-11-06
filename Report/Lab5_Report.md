@@ -1,181 +1,176 @@
-# Báo cáo Công Việc Đã Hoàn Thành - Lab 5
+# Báo cáo Công Việc Đã Hoàn Thành - Lab (Giới thiệu PyTorch)
 
 ## 1. Mô tả công việc đã triển khai
 
-Trong **Lab 5**, các kỹ thuật **phân loại văn bản (text classification)** đã được triển khai để giải quyết bài toán *
-*phân tích cảm xúc (sentiment analysis)**.  
-Công việc tập trung vào việc **xây dựng và so sánh hiệu năng** giữa mô hình sklearn cơ bản và các pipeline xử lý dữ liệu
-lớn bằng **PySpark**.
+Trong Lab này, chúng ta đã tìm hiểu các khái niệm cơ bản và thao tác cốt lõi của thư viện **PyTorch**, một framework học
+sâu phổ biến.
+
+Công việc tập trung vào việc thực hành các kỹ thuật nền tảng, bao gồm:
+
+- Khởi tạo **Tensor** từ nhiều nguồn dữ liệu khác nhau (list, NumPy).
+- Thực hiện các phép toán, slicing, và thay đổi hình dạng trên Tensor.
+- Sử dụng hệ thống **autograd** để tự động tính toán đạo hàm.
+- Xây dựng các mô hình mạng nơ-ron đơn giản bằng cách sử dụng `torch.nn`.
 
 ---
 
-## 2. Các file chính đã được triển khai
+## 2. Các file/notebook chính đã được triển khai
 
-### **File `src/models/text_classifier.py` và `test/lab5_test.py`**
+**File:** `TrinhHaiDang_22001561_Lab06.ipynb`
 
-- Xây dựng lớp `TextClassifier` cơ bản bằng Python, sử dụng `LogisticRegression` từ thư viện **scikit-learn**.
-- Lớp này đóng gói quá trình `fit` (huấn luyện) và `predict` (dự đoán), cùng hàm `evaluate` để tính toán các độ đo *
-  *accuracy**, **precision**, **recall**, **f1-score**.
-- File `lab5_test.py` là script kiểm thử, sử dụng một tập dữ liệu rất nhỏ (6 câu) để xác minh tính đúng đắn của lớp
-  `TextClassifier`.
+Đây là file **Jupyter Notebook chính**, trình bày quy trình làm việc đầy đủ để khám phá các tính năng của PyTorch.  
+Nội dung được chia thành các phần chính:
 
-### **File `test/lab5_spark_sentiment_analysis.py`**
+### Imports và Khởi tạo Tensor (In [1] - [6])
 
-- Triển khai một pipeline phân tích cảm xúc hoàn chỉnh bằng **PySpark** trên tập dữ liệu `sentiments.csv`.
-- Pipeline bao gồm các bước tiền xử lý chuẩn:
-    - `Tokenizer`: tách từ
-    - `StopWordsRemover`: loại bỏ stop words
-    - `HashingTF`: tạo vector đặc trưng thô
-    - `IDF`: tính trọng số TF-IDF
-- Sử dụng mô hình **LogisticRegression** của Spark ML để huấn luyện và phân loại.
-- Đánh giá mô hình bằng `MulticlassClassificationEvaluator`.
+- Nhập các thư viện cần thiết (`numpy`, `torch`, `torch.nn`).
+- Tạo tensor từ list, mảng NumPy, và sử dụng các hàm tiện ích như:
+  `torch.ones_like`, `torch.rand_like`, `torch.rand`, `torch.ones`, `torch.zeros`.
+- Kiểm tra các thuộc tính của tensor như `.shape`, `.dtype`, `.device`.
 
-### **File `test/lab5_improvement_test.py`**
+### Các phép toán trên Tensor (In [7] - [12])
 
-- Một phiên bản **cải tiến** của pipeline PySpark, nhằm tăng độ chính xác.
-- Giữ nguyên các bước tiền xử lý (`Tokenizer`, `StopWordsRemover`, `HashingTF`, `IDF`).
-- Thay thế mô hình **LogisticRegression** bằng **MultilayerPerceptronClassifier (MLP)**.
-- Cấu hình các tầng (**layers**) cho mạng nơ-ron để xử lý **10,000 đặc trưng đầu vào** từ `HashingTF`.
+- Thực hiện các phép toán cơ bản như cộng (+), nhân vô hướng (*).
+- Thực hiện phép nhân ma trận (@) và chuyển vị (.T).
+- Truy cập dữ liệu bằng **Indexing** và **Slicing** (lấy hàng, cột, giá trị).
+- Thay đổi hình dạng tensor bằng `.reshape()`.
+
+### Tự động tính Đạo hàm với autograd (In [13] - [17])
+
+- Ví dụ lan truyền ngược (`.backward()`) trên một hàm toán học cơ bản `z = 3*y*y` để tính `x.grad`.
+- Mô phỏng một bước huấn luyện mô hình: tính dự đoán (`pred`), mất mát (`loss`) bằng `binary_cross_entropy_with_logits`,
+  rồi gọi `loss.backward()` để lấy đạo hàm cho `w.grad` và `b.grad`.
+
+### Xây dựng Mô hình với `torch.nn` (In [18] - [21])
+
+- Giới thiệu lớp `nn.Linear` (tầng tuyến tính) và `nn.Embedding` (tầng nhúng).
+- Xây dựng mô hình tùy chỉnh `MyEmbeddingModel` kế thừa `nn.Module`, kết hợp `nn.Embedding`, `nn.Linear`, và `nn.ReLU`.
+- Chạy dữ liệu đầu vào qua mô hình và kiểm tra `shape` của đầu ra.
 
 ---
 
 ## 3. Hướng dẫn chạy code
 
-```bash
-# Tải thư viện cần thiết
-pip install pyspark scikit-learn
+- Tải thư viện cần thiết: `pip install torch numpy`
+- Chạy Jupyter Lab hoặc Notebook: `jupyter lab`
+- Mở file .ipynb và chạy từng cell
 
-# Chạy script kiểm thử cho lớp TextClassifier (sklearn)
-python test/lab5_test.py
-
-# Chạy script huấn luyện mô hình Logistic Regression bằng PySpark
-python test/lab5_spark_sentiment_analysis.py
-
-# Chạy script huấn luyện mô hình MLP (Neural Network) bằng PySpark
-python test/lab5_improvement_test.py
-```
+---
 
 ## 4. Kết quả
 
-Các file kết quả đầu ra (output) tương ứng với các script đã chạy:
-
-- `results/lab5_test_output.txt`
-- `results/lab5_spark_sentiment_analysis_output.txt`
-- `results/lab5_improvement_test_output.txt`
+Tất cả kết quả (output) của các lệnh đều được in trực tiếp bên dưới các ô code (cell) trong file notebook.  
+Ví dụ: kết quả in tensor, kết quả các phép toán, và kết quả đạo hàm.
 
 ---
 
-## 5 Phân tích và giải thích kết quả
+## 5. Phân tích và giải thích kết quả
 
-### **5.1. `lab5_test.py` (sklearn cơ bản)**
+### 5.1. Khởi tạo và Thao tác Tensor (In [2] - [12])
 
-- **Kết quả:**
-    - Accuracy: 0.5
-    - Precision: 0.25
-    - F1-Score: 0.33
+**Kết quả:**
 
-- **Phân tích:**
-    - Script này chạy trên một tập dữ liệu **rất nhỏ** (4 mẫu huấn luyện, 2 mẫu kiểm thử).
-    - Mô hình dự đoán sai 1 trong 2 mẫu kiểm thử (`"I hate this film..."` dự đoán là 1 thay vì 0).
-    - Các chỉ số thấp là điều dự kiến và **chỉ mang tính xác minh** rằng code chạy đúng, không phản ánh hiệu năng thực
-      tế.
+Các tensor được tạo thành công với các kiểu dữ liệu và hình dạng mong muốn.  
+Ví dụ: `x_data` có dtype là `torch.int64` và shape `[2, 2]`.  
+Phép nhân ma trận `x_data @ x_data.T` cho ra:
 
----
+tensor([[ 5, 11],
+[11, 25]])
 
-### **5.2. `lab5_spark_sentiment_analysis.py` (Spark + Logistic Regression)**
+**Phân tích:**
 
-- **Kết quả:**
-    - Accuracy: 0.6000
-    - Precision: 0.7778
-    - Recall: 0.6000
-    - F1-Score: 0.5238
-    - Thời gian huấn luyện: 2.76 giây
-
-- **Phân tích:**
-    - Đây là mô hình **baseline** trên Spark.
-    - Hiệu năng thấp (Accuracy chỉ 60%).
-    - Phân tích kết quả chi tiết cho thấy mô hình có xu hướng **dự đoán sai các câu tiêu cực** (label 0.0) thành **tích
-      cực** (prediction 1.0).
-    - Điều này chứng tỏ **LogisticRegression** với đặc trưng TF-IDF chưa đủ phức tạp để học được các cấu trúc ngữ nghĩa
-      phủ định trong văn bản.
+Phần này cho thấy **PyTorch API** linh hoạt, cú pháp tương đồng với NumPy (ví dụ `torch.from_numpy`).  
+Các thao tác `reshape`, `slicing` là thiết yếu để chuẩn bị dữ liệu cho mô hình.
 
 ---
 
-### **5.3. `lab5_improvement_test.py` (Spark + MLP Neural Network)**
+### 5.2. Tự động tính Đạo hàm - autograd (In [13] - [17])
 
-- **Kết quả:**
-    - Accuracy: 0.9167
-    - Precision: 0.9259
-    - Recall: 0.9167
-    - F1-Score: 0.9132
-    - Thời gian huấn luyện: 73.9 giây
+**Kết quả:**
 
-- **Phân tích:**
-    - Đây là một **sự cải thiện vượt bậc**.
-    - Chỉ bằng cách thay thế **LogisticRegression** bằng **MultilayerPerceptronClassifier**, độ chính xác đã tăng **từ
-      60% lên gần 92%**.
-    - Mô hình mạng nơ-ron (với cấu trúc tầng `[10000, 1024, 512, 64, 32, 2]`) có khả năng **học các mối quan hệ phi
-      tuyến phức tạp hơn** giữa các đặc trưng TF-IDF, giúp phân loại hiệu quả hơn.
+- Ví dụ 1: Với `x=1 (requires_grad=True)`, `y=x+2`, `z=3*y*y`.  
+  Sau khi gọi `z.backward()`, kết quả `x.grad = tensor([18.])`.
+
+- Ví dụ 2: Mô hình tuyến tính đơn giản, sau `loss.backward()`, các tham số `w`, `b` có giá trị đạo hàm được cập nhật (
+  `w.grad`, `b.grad`).
+
+**Phân tích:**
+
+Theo quy tắc chuỗi (chain rule):
+
+z = 3*(x+2)^2
+dz/dx = 6*(x+2)
+
+Tại `x=1`, `dz/dx = 18`.  
+Ví dụ 2 mô phỏng cốt lõi của quá trình huấn luyện mạng nơ-ron — **autograd** theo dõi các phép toán và tự động tính
+gradient khi gọi `.backward()`.
 
 ---
 
-## 6. So sánh các phương pháp
+### 5.3. Xây dựng Mô hình với torch.nn (In [18] - [21])
 
-| Phương pháp       | Accuracy | Precision | F1-Score | Thời gian huấn luyện | Phân tích                                        |
-|-------------------|----------|-----------|----------|----------------------|--------------------------------------------------|
-| Sklearn (Local)   | 0.50     | 0.25      | 0.33     | Rất nhanh            | Chỉ để kiểm thử, tập dữ liệu quá nhỏ.            |
-| Spark (Log. Reg.) | 0.6000   | 0.7778    | 0.5238   | 2.76 giây            | Nhanh nhưng không chính xác.                     |
-| Spark (MLP)       | 0.9167   | 0.9259    | 0.9132   | 73.9 giây            | Tốt nhất. Chậm hơn nhưng độ chính xác vượt trội. |
+**Kết quả:**
 
-**Kết luận:**  
-Mô hình **LogisticRegression** quá đơn giản cho bài toán này.  
-Mô hình **MultilayerPerceptronClassifier (MLP)** tuy tốn nhiều thời gian huấn luyện hơn (74 giây so với 3 giây) nhưng *
-*đạt hiệu quả cao hơn hẳn**, thể hiện sự **đánh đổi giữa thời gian/tài nguyên tính toán và độ chính xác mô hình**.
+- `nn.Linear` và `nn.Embedding` được khởi tạo thành công.
+- Mô hình `MyEmbeddingModel` được định nghĩa và khởi tạo.
+- `input_data` có shape `[1, 4]` (1 câu, 4 từ).
+- `output_data` có shape `[1, 4, 2]`.
+
+**Phân tích:**
+
+- `nn.Embedding` hoạt động như một bảng tra cứu (*lookup table*), ánh xạ mỗi index thành vector đặc trưng.
+- Mô hình `MyEmbeddingModel` minh họa cách kết hợp các lớp:
+
+[1, 4] → Embedding → [1, 4, 16]
+→ Linear + ReLU → [1, 4, 8]
+→ Output layer → [1, 4, 2]
+
+
+---
+
+## 6. Các khái niệm cốt lõi đã học
+
+| Khái niệm            | Mô tả                                                                                      | Ví dụ trong Lab                           |
+|----------------------|--------------------------------------------------------------------------------------------|-------------------------------------------|
+| **Tensor**           | Cấu trúc dữ liệu đa chiều, tương tự NumPy nhưng có hỗ trợ GPU và tính toán đạo hàm.        | `torch.tensor(data)`, `torch.rand(shape)` |
+| **autograd**         | Hệ thống tự động tính đạo hàm. Theo dõi các phép toán trên tensor có `requires_grad=True`. | `x = torch.ones(1, requires_grad=True)`   |
+| **.backward()**      | Bắt đầu quá trình lan truyền ngược, tính đạo hàm từ một tensor (thường là loss).           | `z.backward()`, `loss.backward()`         |
+| **.grad**            | Lưu trữ giá trị đạo hàm tích lũy sau khi gọi `.backward()`.                                | `x.grad`, `w.grad`, `b.grad`              |
+| **nn.Module**        | Lớp cơ sở để xây dựng mô hình mạng nơ-ron.                                                 | `class MyEmbeddingModel(nn.Module)`       |
+| **Các lớp (Layers)** | Các khối xây dựng sẵn như `nn.Linear`, `nn.Embedding`, `nn.ReLU`.                          | `self.linear = nn.Linear(...)`            |
+| **forward(self, x)** | Định nghĩa luồng dữ liệu trong mô hình.                                                    | `def forward(self, x):`                   |
 
 ---
 
 ## 7. Khó khăn gặp phải và cách giải quyết
 
-### **Khó khăn 1: Hiệu năng mô hình baseline thấp**
+**Khó khăn 1: Hiểu cơ chế hoạt động của autograd**
 
-- **Vấn đề:** LogisticRegression ban đầu chỉ đạt Accuracy ~60%, nhầm lẫn nhiều mẫu tiêu cực.
-- **Giải pháp:** Thay thế bằng **MultilayerPerceptronClassifier** trong file `lab5_improvement_test.py`.  
-  → Accuracy tăng lên **91.7%**.
+**Vấn đề:**  
+Khó hiểu vì sao một số tensor có `grad_fn` còn các tensor khác thì không, và tại sao `.grad` chỉ được cập nhật cho
+“tensor lá” (*leaf tensor*).
 
----
+**Giải pháp:**
 
-### **Khó khăn 2: Cảnh báo (Warnings) khi chạy Spark**
-
-- **Hiện tượng:**
-    - `WARN Utils: Your hostname... resolves to a loopback address`
-    - `WARN NativeCodeLoader: Unable to load native-hadoop library`
-- **Nguyên nhân:** Các cảnh báo này phổ biến khi chạy Spark ở chế độ `local[*]`.
-- **Giải pháp:** Có thể **bỏ qua**, vì không ảnh hưởng đến kết quả thực thi.
-
----
-
-### **Khó khăn 3: Cảnh báo về kích thước tác vụ (Task binary)**
-
-- **Hiện tượng:**  
-  `WARN DAGScheduler: Broadcasting large task binary with size 82.6 MiB`
-- **Phân tích:** Cảnh báo này cho biết mô hình MLP (với nhiều tầng và trọng số) có kích thước lớn, Spark cần **broadcast
-  ** mô hình đến các worker.
-- **Giải pháp:** Bình thường đối với các mô hình phức tạp — đây là lý do khiến **thời gian huấn luyện lâu hơn**.
+- Chỉ tensor có `requires_grad=True` mới được theo dõi.
+- `grad_fn` chỉ tồn tại cho tensor trung gian (kết quả phép toán).
+- `.grad` chỉ có ở tensor lá (ví dụ: `x`, `w`, `b`).
+- Phải gọi `.backward()` trên một **tensor vô hướng (scalar)** để bắt đầu quá trình tính gradient.
 
 ---
 
 ## 8. Công cụ và tài liệu tham khảo
 
-### **Thư viện và Framework**
+**Thư viện và Framework:**
 
-- **Apache Spark (PySpark):** Framework tính toán phân tán dùng để xây dựng pipeline xử lý dữ liệu ML có khả năng mở
-  rộng.
-- **Scikit-learn (sklearn):** Thư viện học máy phổ biến cho Python, được dùng để xây dựng mô hình `TextClassifier` cơ
-  bản.
-- **Spark MLlib:** Thư viện học máy của Spark, cung cấp các công cụ:
-    - **Feature Engineering:** `Tokenizer`, `StopWordsRemover`, `HashingTF`, `IDF`
-    - **Classification Models:** `LogisticRegression`, `MultilayerPerceptronClassifier`
-    - **Evaluation:** `MulticlassClassificationEvaluator`
+- **PyTorch**: Framework học sâu mã nguồn mở chính được sử dụng.
+- **NumPy**: Thư viện tính toán khoa học của Python.
+
+**Các module PyTorch đã sử dụng:**
+
+- `torch.Tensor` – cấu trúc dữ liệu cốt lõi.
+- `torch.autograd` – tính toán đạo hàm tự động.
+- `torch.nn` – xây dựng mạng nơ-ron (các lớp `nn.Module`, `nn.Linear`, `nn.Embedding`, `nn.ReLU`).
+- `torch.nn.functional` – các hàm tiện ích, ví dụ `binary_cross_entropy_with_logits`.
 
 ---
-
