@@ -28,7 +28,25 @@ File: `test/lab6_intro_transformers.ipynb`. Notebook chứa mã nguồn thực h
 
 ## 3. Kết quả
 
-Kết quả đ
+Bài 1:
+
+- Input: "Hanoi is the [MASK] of Vietnam."
+- Kết quả dự đoán (Top 1):
+    - Token: `captital`
+    - Độ tin cậy: 0.9991
+    - Câu hoàn chỉnh: "hanoi is the capital of vietnam."
+
+Bài 2:
+
+- Prompt: "The best thing about learning NLP is"
+- Văn bản sinh ra: "...that you learn to learn something, and you learn it through hard work and hard work. It's not
+  like you learn all at once, but you learn at what is most important..."
+
+Bài 3: Sentence Representation
+
+- Input: "This is a sample sentence"
+- Kích thước vector đầu ra: `torch.Size([1, 768])`
+- 5 giá trị đầu tiên của vector: `[-0.2424, -0.3832, -0.0138, -0.2991, -0.2145]`
 
 ## 4. Phân tích và giải thích kết quả
 
@@ -59,3 +77,10 @@ Bài 3:
     - Nếu không có mask, các vector của token đệm (thường là vector 0 hoặc vector rác) sẽ bị cộng vào tổng và chia trung
       bình, làm sai lệch ý nghĩa thực sự của câu. Cụ thể trong code, mask_expanded giúp triệt tiêu giá trị của padding
       token trước khi tính tổng.
+
+## 5. Các công cụ sử dụng
+
+- Thư viện Transformer:
+    - `pipeline`: Công cụ high-level để thực thi nhanh các tác vụ NLP.
+    - `AutoTokenizer`, `AutoModel`: Các lớp để tải kiến trúc và trọng số mô hình linh hoạt.
+- Mô hình pretrained: BERT (Google), GPT-2 (OpenAI).
